@@ -5,10 +5,30 @@ import 'package:flutter/material.dart';
 
 class Day {
   int id;
-  String date;
-  String note;
+  int date;
+  String notes;
 
-  Day({required this.id, required this.date, required this.note});
+  Day(this.id, this.date, this.notes);
+
+  //Named constructon to init class from map
+  Day.cFromMap(Map<dynamic, dynamic> sourceData)
+      : id = sourceData['Id'] as int,
+        date = sourceData['Date'] as int,
+        notes = sourceData['Notes'] as String;
+
+  void fromMap(Map<String, Object?> mappedData) {
+    id = mappedData['Id'] as int;
+    date = mappedData['Date'] as int;
+    notes = mappedData['Notes'] as String;
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'Id': id,
+      'Date': date,
+      'Notes': notes,
+    };
+  }
 }
 
 class Workshift {
@@ -22,6 +42,15 @@ class Workshift {
       required this.mainIdRef,
       required this.startTime,
       required this.endTime});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'Id': id,
+      'MainIdRef': mainIdRef,
+      'StartTime': startTime,
+      'EndTime': endTime,
+    };
+  }
 }
 
 class Expances {
@@ -37,6 +66,16 @@ class Expances {
       required this.total,
       required this.description,
       required this.paymentMethod});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'Id': id,
+      'MainRefId': mainRefId,
+      'Total': total,
+      'Description': description,
+      'PaymentMethod': paymentMethod,
+    };
+  }
 }
 
 class PaymentMethod {
@@ -45,6 +84,14 @@ class PaymentMethod {
   bool refound;
 
   PaymentMethod({required this.id, required this.name, required this.refound});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'Id': id,
+      'Name': name,
+      'Refound': refound,
+    };
+  }
 }
 
 class CarTripRefound {
@@ -60,6 +107,16 @@ class CarTripRefound {
       required this.tripDistance,
       required this.description,
       required this.veichle});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'Id': id,
+      'MainRefId': mainRefId,
+      'TripDistance': tripDistance,
+      'Description': description,
+      'Veichle': veichle,
+    };
+  }
 }
 
 class Veichle {
@@ -68,4 +125,12 @@ class Veichle {
   bool refound;
 
   Veichle({required this.id, required this.name, required this.refound});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'Id': id,
+      'Name': name,
+      'Refound': refound,
+    };
+  }
 }
